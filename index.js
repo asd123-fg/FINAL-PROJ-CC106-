@@ -1,3 +1,15 @@
-// run `node index.js` in the terminal
+import { supabase } from './lib/supabase.js'
 
-console.log(`Hello Node.js v${process.versions.node}!`);
+async function testConnection() {
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+
+  if (error) {
+    console.error('ERROR:', error)
+  } else {
+    console.log('SUCCESS:', data)
+  }
+}
+
+testConnection()
